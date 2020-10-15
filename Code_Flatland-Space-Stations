@@ -1,0 +1,47 @@
+Bellow is the two different approach for "Flatland-Space-Stations" from hackerrank.
+link: https://www.hackerrank.com/challenges/flatland-space-stations/problem?utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
+
+
+# First approach
+# time complexity is O(n*m)
+# these are not  the complete code only the function which we need to solve in hackerrank
+-----------------------------------------------------------------------------------------
+def flatlandSpaceStations(n, c):
+    x=len(c)
+    if n==x:
+        return 0
+    res=0
+    for i in range(n):
+        p=n
+        for j in c:
+            if abs(j-i)<p:
+                p=abs(j-i)
+        if p>res:
+            res=p
+    return res
+
+###################################################################################
+
+#Second approach
+#time complexity id O(n)
+
+Here we need to sort our array(city) in increasing order. the maximum distance that any city has to travell is half of the distance between
+the nearest city (from both side) if exist. If last element in not included in c than we need to compare the distance between the last element of c and n-1.
+
+
+-----------------------------------------------------------------------------------
+# Complete the flatlandSpaceStations function below.
+def flatlandSpaceStations(n, c):
+    x=len(c)
+    
+    c.sort()
+    res = max(c[0], n-1 - c[-1])
+    print(c)
+    for i in range(1,x):
+        d=(c[i]-c[i-1])//2
+        if d>res:
+            res=d
+        
+    return res
+######################################################################################
+
